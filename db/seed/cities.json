@@ -1,0 +1,150 @@
+{
+  "1":[
+  {
+    "area": "New York",
+    "rank": 1,
+    "population": "8,186,443",
+    "userHasVisited": false,
+    "id": 0
+  },
+  {
+    "area": "Los Angeles",
+    "rank": 2,
+    "population": "3,795,761",
+    "userHasVisited": false,
+    "id": 1
+  },
+  {
+    "area": "Chicago",
+    "rank": 3,
+    "population": "2,698,283",
+    "userHasVisited": true,
+    "id": 2
+  },
+  {
+    "area": "Houston",
+    "rank": 4,
+    "population": "2,108,278",
+    "userHasVisited": false,
+    "id": 3
+  },
+  {
+    "area": "Philadelphia",
+    "rank": 5,
+    "population": "1,528,074",
+    "userHasVisited": false,
+    "id": 4
+  },
+  {
+    "area": "Phoenix",
+    "rank": 6,
+    "population": "1,448,531",
+    "userHasVisited": false,
+    "id": 5
+  },
+  {
+    "area": "San Antonio",
+    "rank": 7,
+    "population": "1,334,431",
+    "userHasVisited": false,
+    "id": 6
+  },
+  {
+    "area": "San Diego",
+    "rank": 8,
+    "population": "1,311,516",
+    "userHasVisited": false,
+    "id": 7
+  },
+  {
+    "area": "Dallas",
+    "rank": 9,
+    "population": "1,201,715",
+    "userHasVisited": false,
+    "id": 8
+  },
+  {
+    "area": "San Jose",
+    "rank": 10,
+    "population": "955,091",
+    "userHasVisited": false,
+    "id": 9
+  },
+  {
+    "area": "Jacksonville",
+    "rank": 11,
+    "population": "822,883",
+    "userHasVisited": false,
+    "id": 10
+  }],
+  "2":[{
+    "area": "New Orleans",
+    "rank": 51,
+    "population": "347,907",
+    "userHasVisited": false,
+    "id": 50
+  },
+  {
+    "area": "Bakersfield",
+    "rank": 52,
+    "population": "348,541",
+    "userHasVisited": false,
+    "id": 51
+  },
+  {
+    "area": "Tampa",
+    "rank": 53,
+    "population": "336,820",
+    "userHasVisited": false,
+    "id": 52
+  },
+  {
+    "area": "Anaheim",
+    "rank": 54,
+    "population": "337,089",
+    "userHasVisited": false,
+    "id": 53
+  },
+  {
+    "area": "Honolulu",
+    "rank": 55,
+    "population": "338,119",
+    "userHasVisited": true,
+    "id": 54
+  },
+  {
+    "area": "Aurora",
+    "rank": 56,
+    "population": "326,650",
+    "userHasVisited": false,
+    "id": 55
+  },
+  {
+    "area": "Santa Ana",
+    "rank": 57,
+    "population": "325,321",
+    "userHasVisited": false,
+    "id": 56
+  },
+  {
+    "area": "St. Louis",
+    "rank": 58,
+    "population": "319,008",
+    "userHasVisited": false,
+    "id": 57
+  },
+  {
+    "area": "Riverside",
+    "rank": 59,
+    "population": "305,679",
+    "userHasVisited": false,
+    "id": 58
+  },
+  {
+    "area": "Corpus Christi",
+    "rank": 60,
+    "population": "305,349",
+    "userHasVisited": false,
+    "id": 59
+  }
+]}
