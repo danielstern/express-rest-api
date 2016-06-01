@@ -1,0 +1,47 @@
+<h1>API Docs</h1>
+<h2>api/cities</h2>
+<p>
+	<div>
+		<h3>GET</h3>
+		Returns a list of all the cities in the database belonging to the user's top city list.
+		<h4>
+			Request Headers
+		</h4>
+		<p>
+		<code>
+			user-access-token: a token used to identify the user, gotten from the auth API.
+		</code>
+			
+		</p>
+		<h4>
+			Response Body
+		</h4>
+		<code>
+		{
+			"area": "New York city",
+			"rank": 1,
+<!--			"population": "8,186,443",-->
+			"userHasVisited": false,
+			"id": 0
+		}
+		</code>
+		<h4>POST</h4>
+		Accepts an array of new cities which are added to the database and ranked automatically
+		<h4>
+			Request Headers
+		</h4>
+		<p>
+		<code>
+			user-access-token: a token used to identify the user, gotten from the auth API.
+		</code>
+		<h4>
+			Request Body
+		</h4>
+		<code>
+		{
+			"area": "example area name",
+			"userHasVisited": false
+		}
+		</code>
+	</div>
+</p>
