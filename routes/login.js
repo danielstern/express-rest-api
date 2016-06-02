@@ -1,6 +1,7 @@
 "use strict"
-let users = require('./../db/seed/users.json');
-//let tokens = require('./../db/seed/tokens.json');
+//let users = require('./../db/seed/users.json');
+let User = require('./../db/models/User.js');
+let Token = require('./../db/models/Token.js');
 let cryptoJS = require('crypto-js');
 
 let encodePassword = (p)=>{
@@ -42,27 +43,37 @@ module.exports = function(app){
 				.json({error:true,message:"Incorrect password provided"});
 		}
 		
-		let user = users.find(u=>u.username===req.body.username);
-		if (!user) {
-			return res
-				.status(404)
-				.json({error:true,message:"No user found matching those credentials"});
-		}
-	
-		if (user.password !== encodePassword(req.body.password)) {
-			return res
-				.status(401)
-				.header({"WWW-Authenticate": 'Basic realm="User Visible Realm"'})
-				.json({error:true,message:"Incorrect password provided"})
-		}
-	
-		getAuthToken(user.id)
-		.then((token)=>{
-			tokens.push({id:user.id,token})
-			res
-				.status(200)
-				.send({token})	
-		});
+		//let user = users.find(u=>u.username===req.body.username);
+			User.findOne({username:req.body.username},(err,user)=>{
+				console.log(user);
+				if (!user) {
+				return res
+					.status(404)
+					.json({error:true,message:"No user found matching those credentials"});
+			}
+
+			if (user.password !== encodePassword(req.body.password)) {
+				return res
+					.status(401)
+					.header({"WWW-Authenticate": 'Basic realm="User Visible Realm"'})
+					.json({error:true,message:"Incorrect password provided"})
+			}
+
+			getAuthToken(user.id)
+			.then((token)=>{
+				new Token({userID:user.id,value:token}).save((err,t)=>{
+					console.log("Created user token in DB",t);
+					res
+						.status(200)
+						.send({token});
+				})
+				
+			}).catch((e)=>{
+				console.log("WTF?!?!");
+				console.log(e);
+			});
+		})
+		
 		
 	})
 }

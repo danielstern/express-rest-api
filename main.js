@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 require('./routes/login.js')(app);
 require('./routes/cities.js')(app);
 
-let port = process.env.PORT || 7778;
+let port = process.env.PORT || 7777;
 require('./db/connect.js')(()=>{
 	console.log("Listening");
 	app.listen(port,()=>{

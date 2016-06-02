@@ -7,11 +7,27 @@ module.exports = ()=>{
 		let User = require('./models/User.js');
 		let users = require('./seed/users.json');
 		
-		createUser(users.pop(),()=>{
+		User.create(users,(err)=>{
 			console.log("All users initialized");
 			User.find((error,users)=>{
 				console.log(JSON.stringify(users));
 			})
+			
+			let Token = require('./models/Token.js');
+			let tokens = require('./seed/tokens.json');
+			
+			Token.create(tokens,(err)=>{
+				console.log("All tokens initialized");
+				Token.find((error,tokens)=>{
+					console.log(JSON.stringify(tokens));
+				})
+				
+			})
+		})
+		
+		/*
+		createUser(users.pop(),()=>{
+			
 		})
 		
 		function createUser(user,cb) {
@@ -25,6 +41,6 @@ module.exports = ()=>{
 					cb();	
 				}
 			});
-		}
+		}*/
 	});
 }

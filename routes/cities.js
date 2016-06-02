@@ -21,6 +21,7 @@ module.exports = function(app){
 			let user = getUserByAuthToken(req.headers.authorization);
 			//console.log("User?",user,req.headers.authorization);
 			// todo... fix this. not working.
+			
 			let userCities = cities[user.id];
 			let count = parseInt(req.query.count) || 50;
 			let start = parseInt(req.query.start) || 0;
