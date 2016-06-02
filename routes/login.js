@@ -1,6 +1,6 @@
 "use strict"
 let users = require('./../db/seed/users.json');
-let tokens = require('./../db/seed/tokens.json');
+//let tokens = require('./../db/seed/tokens.json');
 let cryptoJS = require('crypto-js');
 
 let encodePassword = (p)=>{
@@ -27,6 +27,7 @@ let getAuthToken = (userId)=>{
 module.exports = function(app){
 	app.route('/api/login')
 	.post((req,res)=>{
+		console.log("Logging in...");
 		if (!req.body.username) {
 			return res
 				.status(401)

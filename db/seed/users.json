@@ -1,9 +1,70 @@
 [{
 	"id":1,
 	"username":"floyd",
-	"password":"qGSzjEEmnPCzs2oXcJeZsQBLx5KCXavxo9aQ0C9aBUo="
+	"password":"qGSzjEEmnPCzs2oXcJeZsQBLx5KCXavxo9aQ0C9aBUo=",
+	"cities":[{
+		"area": "New York",
+		"rank": 1,
+		"userHasVisited": false,
+		"id": 0
+	},
+	{
+		"area": "Los Angeles",
+		"rank": 2,
+		"userHasVisited": false,
+		"id": 1
+	},
+	{
+		"area": "Chicago",
+		"rank": 3,
+		"population": "2,698,283",
+		"userHasVisited": true,
+		"id": 2
+	},
+	{
+		"area": "Houston",
+		"rank": 4,
+		"userHasVisited": false,
+		"id": 3
+	},
+	{
+		"area": "Philadelphia",
+		"rank": 5,
+		"userHasVisited": false,
+		"id": 4
+	}]
 },{
 	"id":2,
 	"username":"dave",
-	"password":"/uFF+WSA/24kyrIEdxl4dGc88BxXVZtVLO+zUhJL9gs="
+	"password":"/uFF+WSA/24kyrIEdxl4dGc88BxXVZtVLO+zUhJL9gs=",
+	"cities":[{
+		"area": "New Orleans",
+		"rank": 51,
+		"userHasVisited": false,
+		"id": 50
+	},
+	{
+		"area": "Bakersfield",
+		"rank": 52,
+		"userHasVisited": false,
+		"id": 51
+	},
+	{
+		"area": "Tampa",
+		"rank": 53,
+		"userHasVisited": false,
+		"id": 52
+	},
+	{
+		"area": "Anaheim",
+		"rank": 54,
+		"userHasVisited": false,
+		"id": 53
+	},
+	{
+		"area": "Honolulu",
+		"rank": 55,
+		"userHasVisited": true,
+		"id": 54
+	}]
 }]

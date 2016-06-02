@@ -1,6 +1,6 @@
 "use strict"
 
-let cities = require('./../db/seed/cities.json');
+//let cities = require('./../db/seed/cities.json');
 let isInteger = v=>v.match(/^[0-9]*$/);
 let getUserByAuthToken = require('./../auth/getUserByAuthToken.js');
 
@@ -19,11 +19,12 @@ module.exports = function(app){
 			res.status(500).json(serverError("Invalid count parameter"));
 		} else {
 			let user = getUserByAuthToken(req.headers.authorization);
-			console.log("User?",user,req.headers.authorization);
+			//console.log("User?",user,req.headers.authorization);
+			// todo... fix this. not working.
 			let userCities = cities[user.id];
 			let count = parseInt(req.query.count) || 50;
 			let start = parseInt(req.query.start) || 0;
-			console.log("User cities?",userCities,userCities.slice(start,start+count));
+			//console.log("User cities?",userCities,userCities.slice(start,start+count));
 			res.status(200).json(userCities.slice(start,start+count));	
 		}
 	})

@@ -2,7 +2,7 @@
 "use strict"
 let argv = require('optimist').argv;
 let disableAuthentication = argv.noAuth;
-let tokens = require('./../db/seed/tokens.json');
+//let tokens = require('./../db/seed/tokens.json');
 
 module.exports = function isAuthenticated(req, res, next) 
 {
@@ -23,6 +23,6 @@ module.exports = function isAuthenticated(req, res, next)
 	} else {
 		res.status(401)
 			.header({"WWW-Authenticate": 'Basic realm="User Visible Realm"'})
-			.json(serverError({error:true,message:"No Authorization header provided"}));
+			.json({error:true,message:"No Authorization header provided"});
 	}
 }
