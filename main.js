@@ -14,7 +14,7 @@ app.use('/api/cities',isAuthenticated);
 app.use('/api/cities/:id',isAuthenticated);
 // Add plugins to our express app to allow it to interpret POST requests
 app.use(bodyParser.urlencoded({
-  extended: true
+	extended: true
 }));
 app.use(bodyParser.json());
 

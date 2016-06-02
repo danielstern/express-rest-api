@@ -9,6 +9,8 @@ module.exports = ()=>{
 		
 		User.create(users,(err)=>{
 			console.log("All users initialized");
+			
+			// TODO: remove inline testing after tests are implemented
 			User.find((error,users)=>{
 				console.log(JSON.stringify(users,null,2));
 			})
@@ -16,6 +18,7 @@ module.exports = ()=>{
 			let Token = require('./models/Token.js');
 			let tokens = require('./seed/tokens.json');
 			
+			// TODO: remove inline testing after tests are implemented
 			Token.create(tokens,(err)=>{
 				console.log("All tokens initialized");
 				Token.find((error,tokens)=>{
@@ -24,23 +27,5 @@ module.exports = ()=>{
 				
 			})
 		})
-		
-		/*
-		createUser(users.pop(),()=>{
-			
-		})
-		
-		function createUser(user,cb) {
-			new User(user).save(()=>{
-				if (users.length > 0) 
-				{
-					createUser(users.pop(),cb);
-				} 
-				else 
-				{
-					cb();	
-				}
-			});
-		}*/
 	});
 }
