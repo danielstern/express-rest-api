@@ -35,14 +35,24 @@ module.exports = function(app){
 	app.route('/api/cities/:id')
 		.get((req,res)=>{
 			// Find the city in the database with the matching ID
-			let city = cities.find(c=>c.id==req.params.id);
+			getUserByAuthToken(req.headers.authorization,(user)=>{
+				let city = user.cities.find(c=>c.id==req.params.id);
+				if (city) {
+					// Return the city to the client with a 300 (OK) status
+					res.status(300).json(city);	
+				} else {
+					// Let the client know its search was invalid.
+					res.status(404).json("No city by that ID found");
+				}	
+			})
+			/*let city = cities.find(c=>c.id==req.params.id);
 			if (city) {
 				// Return the city to the client with a 300 (OK) status
 				res.status(300).json(city);	
 			} else {
 				// Let the client know its search was invalid.
 				res.status(404).json(serverError("No city by that ID found"));
-			}
+			}*/
 		})
 		.post((req,res)=>{
 			//let currentUserId = getUserToken;

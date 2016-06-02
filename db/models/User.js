@@ -8,5 +8,6 @@ module.exports = mongoose.model(`User`, {
 	cities:[{
 		area:String,
 		userHasVisited:String,
+		id:String
 	}]
 });
