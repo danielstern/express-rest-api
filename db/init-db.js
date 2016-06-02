@@ -10,7 +10,7 @@ module.exports = ()=>{
 		User.create(users,(err)=>{
 			console.log("All users initialized");
 			User.find((error,users)=>{
-				console.log(JSON.stringify(users));
+				console.log(JSON.stringify(users,null,2));
 			})
 			
 			let Token = require('./models/Token.js');
@@ -19,7 +19,7 @@ module.exports = ()=>{
 			Token.create(tokens,(err)=>{
 				console.log("All tokens initialized");
 				Token.find((error,tokens)=>{
-					console.log(JSON.stringify(tokens));
+					console.log(JSON.stringify(tokens,null,2));
 				})
 				
 			})

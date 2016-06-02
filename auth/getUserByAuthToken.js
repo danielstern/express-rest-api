@@ -1,9 +1,19 @@
 "use strict"
-module.exports = function getUserByAuthToken(token) {
-	let tokens = require('./../db/seed/tokens.json');
-	let users = require('./../db/seed/users.json');
-	let userId = tokens.find(t=>t.token==token).id;
-	console.log("tokens?",tokens,userId);
-	let user = users.find(u=>u.id === userId);
-	return user;
+let Token = require('./../db/models/Token.js');
+let User = require('./../db/models/User.js');
+
+module.exports = function getUserByAuthToken(token,cb) {
+	// If authorization is disabled, just get first user. 
+	// TODO: change this
+	if (require('optimist').argv.noAuth) {
+		return User.findOne({},(err,user)=>{
+			cb(user);
+		})
+	}
+	
+	Token.findOne({value:token},(err,token)=>{
+		User.findOne({id:token.userID},(err,user)=>{
+			cb(user);
+		})
+	})
 }

@@ -6,23 +6,27 @@ let disableAuthentication = argv.noAuth;
 
 module.exports = function isAuthenticated(req, res, next) 
 {
-	console.log("running is authenticated...");
+	console.log("Checking request authentication...");
+	
 	if (disableAuthentication) {
 		return next();
 	}
-	if (req.headers['authorization']) 
-	{
-		//if (req.headers['authorization'] == "abcd") {
-		if (tokens.find(t=>t.token === req.headers['authorization']))
+	
+	if (!req.headers['authorization']) {
+		return res.status(401)
+			.header({"WWW-Authenticate": 'Basic realm="User Visible Realm"'})
+			.json({error:true,message:"No Authorization header provided"});
+	}
+	
+	let Token = require('./../db/models/Token.js');
+	
+	Token.findOne({value:req.headers['authorization']},(err,token)=>{
+		if (token) 
 		{
+			console.log("Token?",token);
 			return next();	
 		} else {
 			res.status(403).json({error:true,message:"Failed to validate authentication token"});	
 		}
-		
-	} else {
-		res.status(401)
-			.header({"WWW-Authenticate": 'Basic realm="User Visible Realm"'})
-			.json({error:true,message:"No Authorization header provided"});
-	}
+	})
 }
