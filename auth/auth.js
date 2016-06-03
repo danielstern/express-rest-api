@@ -1,14 +1,13 @@
-// Custom authentication script
 "use strict"
 let argv = require('optimist').argv;
 let disableAuthentication = argv.noAuth;
-//let tokens = require('./../db/seed/tokens.json');
 
 module.exports = function isAuthenticated(req, res, next) 
 {
 	console.log("Checking request authentication...");
 	
 	if (disableAuthentication) {
+		console.log("Bypassing authentication");
 		return next();
 	}
 	

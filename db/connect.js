@@ -16,12 +16,7 @@ module.exports = (cb)=>{
 		else 
 		{
 			console.log("Connected successfully");
-			cb();
-			
-			console.log(require('optimist').argv);
-			if (require('optimist').argv.clearDB) {
-				require('./init-db.js')();
-			}
+			cb();	
 		}
 		
 	});

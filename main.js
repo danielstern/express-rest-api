@@ -18,6 +18,10 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
+if (require('optimist').argv.clearDB) {
+  require('./init-db.js')();
+}
+
 
 require('./routes/login.js')(app);
 require('./routes/cities.js')(app);
@@ -29,3 +33,5 @@ require('./db/connect.js')(()=>{
 		console.log(`App is listening on port ${port}.`)
 	})
 })
+
+module.exports = app;
