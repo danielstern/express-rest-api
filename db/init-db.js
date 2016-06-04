@@ -1,11 +1,13 @@
 "use strict"
 let mongoose = require('mongoose');
 
-module.exports = ()=>{
+module.exports = (cb)=>{
 	
   console.log("Initializing database entries");
   let User = require('./models/User.js');
   let users = require('./seed/users.json');
+	
+	console.log(User);
 
   User.create(users,(err)=>{
     console.log("All users initialized");
@@ -21,6 +23,7 @@ module.exports = ()=>{
     // TODO: remove inline testing after tests are implemented
     Token.create(tokens,(err)=>{
       console.log("All tokens initialized");
+			if (cb) {cb()};
       Token.find((error,tokens)=>{
         console.log(JSON.stringify(tokens,null,2));
       })

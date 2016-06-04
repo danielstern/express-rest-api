@@ -26,7 +26,8 @@
   "jest": {
     "unmockedModulePathPatterns": [
       "express",
-      "crypto-js"
+      "crypto-js",
+			"mongoose"
     ],
     "automock": true,
     "moduleFileExtensions": [

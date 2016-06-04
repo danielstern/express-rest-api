@@ -1,8 +1,8 @@
 "use strict"
 
-//let cities = require('./../db/seed/cities.json');
 let isInteger = v=>v.match(/^[0-9]*$/);
 let getUserByAuthToken = require('./../auth/getUserByAuthToken.js');
+let User = require('./../db/models/User.js');
 
 module.exports = function(app){
 
@@ -27,6 +27,20 @@ module.exports = function(app){
 			res.status(200).json(user.cities.slice(start,start+count));	
 		})
 	})
+	.post((req,res)=>{
+		let city = req.body;
+		console.log("City?",city);
+		getUserByAuthToken(req.headers.authorization,(user)=>{
+			
+			User.findOne({id:user.id},function(err,userModel){
+				console.log("Found user model.",userModel)
+				userModel.cities.push(city);
+				useModel.save(()=>{
+					res.status(300).send();	
+				})
+			})
+		})
+	});
 
 	
 	app.route('/api/cities/:id')
@@ -42,9 +56,6 @@ module.exports = function(app){
 					res.status(404).json("No city by that ID found");
 				}	
 			})
-		})
-		.post((req,res)=>{
-			//let currentUserId = getUserToken;
 		})
 
 }
