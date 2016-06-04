@@ -7,7 +7,7 @@ module.exports = (cb)=>{
   let User = require('./models/User.js');
   let users = require('./seed/users.json');
 	
-	console.log(User);
+	console.log(User.create);
 
   User.create(users,(err)=>{
     console.log("All users initialized");

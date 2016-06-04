@@ -31,7 +31,10 @@ module.exports = function(app){
 		let city = req.body;
 		console.log("City?",city);
 		getUserByAuthToken(req.headers.authorization,(user)=>{
-			
+			//console.log("Got auth. Finding user.", User, user);
+			User.find({},function(err,all){
+				console.log("All results..",all);
+			});
 			User.findOne({id:user.id},function(err,userModel){
 				console.log("Found user model.",userModel)
 				userModel.cities.push(city);

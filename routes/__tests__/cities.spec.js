@@ -1,3 +1,5 @@
+jest.unmock('./../../db/models/User.js');
+
 var request = require('supertest');
 var express = require('express');
 var mongoose = require('mongoose');
@@ -6,6 +8,7 @@ let bodyParser = require('body-parser');
 
 jest.mock('./../../auth/getUserByAuthToken.js');
 //jest.unmock('./../../db/init-db.js');
+
 
 beforeEach((done)=>{
 	app = require('./../../app.js');
@@ -21,7 +24,14 @@ beforeEach((done)=>{
 		else 
 		{
 			console.log("Connected successfully");
-			done();	
+			setTimeout(function(){
+					console.log("Resolved");			
+					require('./../../db/init-db.js')(()=>{
+					done();		
+				});
+			},500);
+			    jest.runAllTimers();
+			
 		}
 		
 	});
@@ -69,7 +79,7 @@ describe('GET /api/cities/:id', function() {
 	})
 });
 
-xdescribe('POST /api/cities', function() {
+fdescribe('POST /api/cities', function() {
 	it('Adds the specified city',(done)=>{
 		console.log("Making request...");
 		request(app)
@@ -77,11 +87,11 @@ xdescribe('POST /api/cities', function() {
 		.send({"name":"The Red Keep"})
 		.end((err,res)=>{
 			console.log(res.status);
+			
+		  console.error(err);
 			expect(res.status).toEqual(300);
 			console.log(res.body);
-			done((err,res)=>{
-				console.error(err);
-			});
+			done();
 		})
 	})	
 });
