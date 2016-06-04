@@ -8,6 +8,7 @@
     "crypto-js": "^3.1.6",
     "cryptojs": "^2.5.3",
     "express": "^4.13.4",
+    "jasmine": "^2.4.1",
     "jest": "^12.1.1",
     "mocha": "^2.5.3",
     "mongoose": "^4.4.19",
@@ -15,7 +16,9 @@
     "passport": "^0.3.2",
     "supertest": "^1.2.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "jest-cli": "^12.1.1"
+  },
   "scripts": {
     "test": "mocha --reporter spec */__tests__/*.js",
     "start": "node main.js"
@@ -25,6 +28,7 @@
       "express",
       "crypto-js"
     ],
+    "automock": true,
     "moduleFileExtensions": [
       "js",
       "json",

@@ -1,7 +1,7 @@
 var request = require('supertest');
 var express = require('express');
 
-//var app = require('./../../main');
+jest.mock('./../../auth/getUserByAuthToken.js');
 
 describe('GET /api/cities', function() {
 	it('responds with json', function(done) {
