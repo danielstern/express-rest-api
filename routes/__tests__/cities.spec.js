@@ -1,4 +1,5 @@
 jest.unmock('./../../db/models/User.js');
+jest.unmock('mongoose');
 
 var request = require('supertest');
 var express = require('express');
@@ -11,10 +12,10 @@ jest.mock('./../../auth/getUserByAuthToken.js');
 
 
 beforeEach((done)=>{
-	app = require('./../../app.js');
+	
 	
 	userSeed = require('./../../db/seed/users.json');
-	require('./../cities.js')(app);
+	
 
 	cn = mongoose.createConnection(`mongodb://localhost/restExpressAPIDataTest` ,(error)=>{
 		if (error) 
@@ -27,7 +28,9 @@ beforeEach((done)=>{
 			setTimeout(function(){
 					console.log("Resolved");			
 					require('./../../db/init-db.js')(()=>{
-					done();		
+						app = require('./../../app.js');
+						require('./../cities.js')(app);
+						done();		
 				});
 			},500);
 			    jest.runAllTimers();
@@ -63,7 +66,7 @@ describe('GET /api/cities', function() {
 	})
 });
 
-describe('GET /api/cities/:id', function() {
+fdescribe('GET /api/cities/:id', function() {
 	it('returns the specified city',(done)=>{
 		user = userSeed[0];
 		city = user.cities[0];
@@ -79,7 +82,7 @@ describe('GET /api/cities/:id', function() {
 	})
 });
 
-fdescribe('POST /api/cities', function() {
+describe('POST /api/cities', function() {
 	it('Adds the specified city',(done)=>{
 		console.log("Making request...");
 		request(app)

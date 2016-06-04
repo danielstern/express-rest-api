@@ -29,7 +29,7 @@
       "crypto-js",
 			"mongoose"
     ],
-    "automock": true,
+    "automock": false,
     "moduleFileExtensions": [
       "js",
       "json",

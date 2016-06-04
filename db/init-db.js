@@ -8,8 +8,8 @@ module.exports = (cb)=>{
   let users = require('./seed/users.json');
 	
 	console.log(User.create);
-
-  User.create(users,(err)=>{
+	
+		User.create(users,(err)=>{
     console.log("All users initialized");
 
     // TODO: remove inline testing after tests are implemented
@@ -29,5 +29,7 @@ module.exports = (cb)=>{
       })
 
     })
-	});
+	});	
+	
+  
 }
