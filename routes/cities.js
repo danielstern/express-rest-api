@@ -8,6 +8,8 @@ module.exports = function(app){
 
 	app.route('/api/cities')
 	.get((req,res)=>{
+		
+		console.log("Getting things. Need middleware?");
 
 		if (req.query.start && !isInteger(req.query.start)) {
 			return res.status(500).json("Invalid start parameter");

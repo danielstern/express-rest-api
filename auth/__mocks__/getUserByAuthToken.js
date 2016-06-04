@@ -1,0 +1,1 @@
+console.log("Mocked get user auth token");

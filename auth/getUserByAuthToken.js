@@ -1,6 +1,7 @@
 "use strict"
 let Token = require('./../db/models/Token.js');
 let User = require('./../db/models/User.js');
+console.log("Real get user by auth token");
 
 module.exports = function getUserByAuthToken(token,cb) {
 	// If authorization is disabled, just get first user. 
