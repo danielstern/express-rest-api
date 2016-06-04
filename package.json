@@ -20,7 +20,7 @@
     "jest-cli": "^12.1.1"
   },
   "scripts": {
-    "test": "jest",
+    "test": "jest --verbose",
     "start": "node main.js"
   },
   "jest": {
