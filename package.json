@@ -20,7 +20,7 @@
     "jest-cli": "^12.1.1"
   },
   "scripts": {
-    "test": "mocha --reporter spec */__tests__/*.js",
+    "test": "jest",
     "start": "node main.js"
   },
   "jest": {

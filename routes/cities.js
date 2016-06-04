@@ -8,8 +8,6 @@ module.exports = function(app){
 
 	app.route('/api/cities')
 	.get((req,res)=>{
-		
-		console.log("Getting things. Need middleware?");
 
 		if (req.query.start && !isInteger(req.query.start)) {
 			return res.status(500).json("Invalid start parameter");
@@ -19,16 +17,15 @@ module.exports = function(app){
 		}
 		
 		getUserByAuthToken(req.headers.authorization,(user)=>{
-			let userCities = user.cities;	
 
 			if (req.query.start >= user.cities.length) {
 				return res.status(500).json("Index is too high");
 			}
 			let count = parseInt(req.query.count) || 50;
 			let start = parseInt(req.query.start) || 0;
+			
 			res.status(200).json(user.cities.slice(start,start+count));	
 		})
-
 	})
 
 	
