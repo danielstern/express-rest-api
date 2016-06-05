@@ -79,47 +79,33 @@ describe('GET /api/cities/:id', function() {
 	})
 });
 
-fdescribe('POST /api/cities', function() {
+xdescribe('POST /api/cities', function() {
 	it('Adds the specified city',(done)=>{
 		console.log("Making request...");
 		request(app)
 		.post(`/api/cities`)
 		.send({"name":"The Red Keep"})
-		.expect((err,res)=>{
-			console.log(res.status);
-			/*require('./../../db/connect.js')((_cn)=>{
-				console.log("test?");
-				User.find({},function(err,all){
-					console.log("All results..",all);
-				});
-			});*/
-			
-			
-			
-		 // console.error(err);
-			expect(res.status).toEqual(300);
-		//	console.log(res.body);
+		.expect((res)=>{
+			console.log("The en now");
+			//console.log(res.status);
+
+			//expect(res.status).toEqual(300);
+			//console.log(res.body);
 			getUserByAuthToken(1234,(user)=>{
-				console.log("Auth token...");
 					console.log("Attempting to find user model from Test",user.id,User);
 				
 					User.findOne({id:user.id},function(err,userModel){
-						console.log("Found user model.",userModel)
-						console.log(userModel.cities)
+						console.log("Found");
+						expect(userModel.cities.find((c)=>{c.name === "The Red Keep"}));
+						done();
+						//done();
 						
-					});	
-					jest.runAllTimers();
-				
-				
+					});		
+				jest.runAllTimers();
 				
 			})
-			
-		//	console.log(res.body.cities);
-			
+		//	done();
 		})
-		.end(()=>{
-			console.log("The en now");
-			done();
-		})
+		.end((a)=>{})
 	})	
 });
