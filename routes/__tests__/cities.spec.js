@@ -79,18 +79,22 @@ describe('GET /api/cities/:id', function() {
 	})
 });
 
-xdescribe('POST /api/cities', function() {
+fdescribe('POST /api/cities', function() {
 	it('Adds the specified city',(done)=>{
 		console.log("Making request...");
 		request(app)
 		.post(`/api/cities`)
 		.send({"name":"The Red Keep"})
-		.end((err,res)=>{
+		.expect((err,res)=>{
 			console.log(res.status);
+			/*require('./../../db/connect.js')((_cn)=>{
+				console.log("test?");
+				User.find({},function(err,all){
+					console.log("All results..",all);
+				});
+			});*/
 			
-			User.find({},function(err,all){
-				console.log("All results..",all);
-			});
+			
 			
 		 // console.error(err);
 			expect(res.status).toEqual(300);
@@ -102,7 +106,7 @@ xdescribe('POST /api/cities', function() {
 					User.findOne({id:user.id},function(err,userModel){
 						console.log("Found user model.",userModel)
 						console.log(userModel.cities)
-						done();
+						
 					});	
 					jest.runAllTimers();
 				
@@ -112,6 +116,10 @@ xdescribe('POST /api/cities', function() {
 			
 		//	console.log(res.body.cities);
 			
+		})
+		.end(()=>{
+			console.log("The en now");
+			done();
 		})
 	})	
 });

@@ -13,9 +13,9 @@ module.exports = (cb)=>{
     console.log("All users initialized");
 
     // TODO: remove inline testing after tests are implemented
-    User.find((error,users)=>{
+    /*User.find((error,users)=>{
       console.log(JSON.stringify(users,null,2));
-    })
+    })*/
 
     let Token = require('./models/Token.js');
     let tokens = require('./seed/tokens.json');
