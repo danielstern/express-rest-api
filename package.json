@@ -27,7 +27,7 @@
     "unmockedModulePathPatterns": [
       "express",
       "crypto-js",
-			"mongoose"
+      "mongoose"
     ],
     "automock": false,
     "moduleFileExtensions": [
