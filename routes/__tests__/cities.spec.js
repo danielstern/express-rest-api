@@ -4,31 +4,28 @@ jest.unmock('mongoose');
 var request = require('supertest');
 var express = require('express');
 var mongoose = require('mongoose');
+let User = require.requireActual('./../../db/models/User.js');
 //var mockgoose = require('mockgoose');
+
 
 
 let bodyParser = require('body-parser');
 
 jest.mock('./../../auth/getUserByAuthToken.js');
 //jest.unmock('./../../db/init-db.js');
-
-/*
-beforeEach(function(done) {
-    mockgoose(mongoose).then(function() {
-        mongoose.connect('mongodb://example.com/TestingDB', function(err) {
-            done(err);
-        });
-    });
-});
-*/
+let getUserByAuthToken = require('./../../auth/getUserByAuthToken.js');
+var cn;
 beforeEach((done)=>{	
 	userSeed = require('./../../db/seed/users.json');
 	app = require('./../../app.js');
 	require('./../cities.js')(app);
-	require('./../../db/connect.js')(()=>{
-		require('./../../db/init-db.js')(()=>{
-			done();		
-		});	
+	require('./../../db/connect.js')((_cn)=>{
+		cn = _cn;
+		require('./../../db/drop-db.js')(()=>{
+			require('./../../db/init-db.js')(()=>{
+				done();		
+			});	
+		})
 	})
 })
 
@@ -37,6 +34,11 @@ afterEach((done)=>{
 		console.log("Disconnected from Mongoose")	;
 		done();
 	});
+	mongoose.connection.close(()=>{
+		console.log("Disconnected from Mongoose")	;
+	});
+	
+	cn.disconnect();
 })
 
 describe('GET /api/cities', function() {
@@ -77,7 +79,7 @@ describe('GET /api/cities/:id', function() {
 	})
 });
 
-fdescribe('POST /api/cities', function() {
+xdescribe('POST /api/cities', function() {
 	it('Adds the specified city',(done)=>{
 		console.log("Making request...");
 		request(app)
@@ -86,11 +88,30 @@ fdescribe('POST /api/cities', function() {
 		.end((err,res)=>{
 			console.log(res.status);
 			
-		  console.error(err);
+			User.find({},function(err,all){
+				console.log("All results..",all);
+			});
+			
+		 // console.error(err);
 			expect(res.status).toEqual(300);
-			console.log(res.body);
-			console.log(res.body.cities);
-			done();
+		//	console.log(res.body);
+			getUserByAuthToken(1234,(user)=>{
+				console.log("Auth token...");
+					console.log("Attempting to find user model from Test",user.id,User);
+				
+					User.findOne({id:user.id},function(err,userModel){
+						console.log("Found user model.",userModel)
+						console.log(userModel.cities)
+						done();
+					});	
+					jest.runAllTimers();
+				
+				
+				
+			})
+			
+		//	console.log(res.body.cities);
+			
 		})
 	})	
 });

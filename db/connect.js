@@ -10,7 +10,7 @@ module.exports = (cb,uri)=>{
 	`mongodb://localhost/restExpressAPIData`;
 
 	console.log(`DB connecting to ${mongoURI}`);
-	mongoose.connect(mongoURI ,(error)=>{
+	var db = mongoose.connect(mongoURI ,(error)=>{
 		if (error) 
 		{
 			throw error;
@@ -18,7 +18,7 @@ module.exports = (cb,uri)=>{
 		else 
 		{
 			console.log("Connected successfully");
-			cb();	
+			cb(db);	
 		}
 		
 	});
