@@ -8,9 +8,9 @@ module.exports = (cn,cb)=>{
   let users = require('./seed/users.json');
 	
 	console.log(User.create);
-		console.log("User seed?",users);
+		//console.log("User seed?",users);
 		User.create(users,(err,res)=>{
-    console.log("All users initialized",err,res);
+    //console.log("All users initialized",err,res);
 
     // TODO: remove inline testing after tests are implemented
     /*User.find((error,users)=>{

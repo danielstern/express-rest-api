@@ -25,12 +25,12 @@ console.log('error');
 let getUserByAuthToken = require('./../../auth/getUserByAuthToken.js');
 var cn;
 beforeEach((done)=>{	
-	console.log("Before each");
+	//console.log("Before each");
 	userSeed = require('./../../db/seed/users.json');
-	app = require('./../../app.js'); 
+	app = require.requireActual('./../../app.js'); 
 	
 	require('./../cities.js')(app); 
-	console.log("Before each 2");
+	//console.log("Before each 2");
 	require('./../../db/connect.js')((_cn)=>{
 		cn = _cn;
 		User = require('./../../db/models/User.js')(cn);
@@ -133,7 +133,7 @@ xdescribe('POST /api/cities', function() {
 });
 
 
-fdescribe('Worlds best test',function(){
+xdescribe('Worlds best test',function(){
 	
 	it("is fairly swell",function(done){
 		console.log("Here we go.");
