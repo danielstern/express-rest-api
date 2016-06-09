@@ -1,0 +1,11 @@
+[{
+	"id":1,
+	"username":"floyd",
+	"password":"qGSzjEEmnPCzs2oXcJeZsQBLx5KCXavxo9aQ0C9aBUo=",
+	"cities":[{
+		"area": "Test Ville",
+		"rank": 1,
+		"userHasVisited": false,
+		"id": 0
+	}]
+}]

@@ -21,15 +21,16 @@
   },
   "scripts": {
     "test": "jest --verbose",
-    "start": "node main.js"
+    "start": "node main.js",
+		"watch:test": "nodemon -w routes/** -w db/**/*.* -w package.json -e js,jsx -x npm test --captureExceptions"
   },
   "jest": {
     "unmockedModulePathPatterns": [
-      "express",
       "crypto-js",
-      "mongoose"
+      "mongoose",
+			"body-parser"
     ],
-    "automock": false,
+    "automock": true,
     "moduleFileExtensions": [
       "js",
       "json",

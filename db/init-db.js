@@ -1,16 +1,16 @@
 "use strict"
 let mongoose = require('mongoose');
 
-module.exports = (cb)=>{
+module.exports = (cn,cb)=>{
 	
   console.log("Initializing database entries");
-  let User = require('./models/User.js');
+  let User = require('./models/User.js')(cn);
   let users = require('./seed/users.json');
 	
 	console.log(User.create);
-	
-		User.create(users,(err)=>{
-    console.log("All users initialized");
+		console.log("User seed?",users);
+		User.create(users,(err,res)=>{
+    console.log("All users initialized",err,res);
 
     // TODO: remove inline testing after tests are implemented
     /*User.find((error,users)=>{

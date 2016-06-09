@@ -30,9 +30,9 @@ module.exports = function(app){
 	.post((req,res)=>{
 		console.log("Receive request");
 		let city = req.body;
-		console.log("City?",city);
+	//	console.log("City?",city);
 		getUserByAuthToken(req.headers.authorization,(user)=>{
-			console.log("Got auth. Finding user.", User, user);
+	//		console.log("Got auth. Finding user.", User, user);
 		
 			User.findOne({id:user.id},function(err,userModel){
 				//console.log("Found user model.",userModel)
