@@ -1,6 +1,6 @@
 "use strict"
 
-let isInteger = v=>v.match(/^[0-9]*$/);
+let isInteger = require('./../util/filters/isInteger.js');
 let getUserByAuthToken = require('./../auth/getUserByAuthToken.js');
 
 
@@ -47,9 +47,11 @@ module.exports = function(app){
 		})
 	});
 
-	
+	require('./cities/city.route.main.js')(app);
+	/*
 	app.route('/api/cities/:id')
 		.get((req,res)=>{
+		console.log("App route cgo now!");
 			// Find the city in the database with the matching ID
 			getUserByAuthToken(req.headers.authorization,(user)=>{
 				let city = user.cities.find(c=>c.id==req.params.id);
@@ -62,5 +64,5 @@ module.exports = function(app){
 				}	
 			})
 		})
-
+*/
 }

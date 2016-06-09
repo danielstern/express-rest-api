@@ -22,7 +22,7 @@
   "scripts": {
     "test": "jest --verbose",
     "start": "node main.js",
-		"watch:test": "nodemon -w routes/**/*.js -w package.json -e js,jsx -x npm test --captureExceptions"
+		"watch:test": "nodemon -w routes/**/*.js -w package.json -w **/*.js -e js,jsx -x npm test --captureExceptions"
   },
   "jest": {
     "unmockedModulePathPatterns": [
