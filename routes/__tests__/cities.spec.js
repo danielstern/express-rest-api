@@ -6,13 +6,12 @@ jest.unmock('supertest');
 jest.unmock('./../../db/drop-db.js');
 jest.unmock('./../../db/init-db.js');
 jest.unmock('./../../db/seed/users.json');
+jest.unmock('./../../app.js');
+jest.unmock('./../cities.js');
 var request = require('supertest');
-//var express = require.requireActual('express');
 var mongoose = require('mongoose');
 var User ;
-//let User = require('./../../db/models/User.js');
-//var mockgoose = require('mockgoose');
-
+var getUserByAuthToken = require('./../../auth/getUserByAuthToken.js');
 
 process.on('uncaughtException', function(e) {
 console.log('error');
@@ -20,9 +19,6 @@ console.log('error');
 });
 
 
-//jest.mock('./../../auth/getUserByAuthToken.js');
-//jest.unmock('./../../db/init-db.js');
-let getUserByAuthToken = require('./../../auth/getUserByAuthToken.js');
 var cn;
 beforeEach((done)=>{	
 	//console.log("Before each");
@@ -100,15 +96,43 @@ describe('GET /api/cities/:id', function() {
 
 
 
-xdescribe('POST /api/cities', function() {
+fdescribe('POST /api/cities', function() {
 	it('Adds the specified city',(done)=>{
-//		console.log("Making request...");
+		let testNewCity = {"area":"The Red Keep"};
+		console.log("Making request...");
 		request(app)
 		.post(`/api/cities`)
-		.send({"name":"The Red Keep"})
-		.expect((res)=>{
-			console.log("The en now");
+		//.type('form')
+		//.send(JSON.stringify(testNewCity))
+		.send(testNewCity)
+		.set('Accept', /application\/json/)
+		.expect(300)
+		.end(function(err,res){
+			console.log(err,res.status);
+			//done(err);
+			getUserByAuthToken(1234,(user)=>{
+					console.log("Attempting to find user model from Test");
+				 
+					User.findOne({id:user.id},function(err,userModel){
+						//console.log("Found",userModel.cities); 
+					////	console.log(userModel.cities.find(g=>g.area == "The Red Keep"));
+					//	console.log(userModel.cities.find(g=>g.area ==);
+						//console.log(testNewCity.area);
+						var orig = userModel.cities.find(c=>c.area === testNewCity.area);
+					//	console.log(orig);
+						expect(orig.area).toEqual(testNewCity.area);
+						expect(orig).not.toBeUndefined();
+					//	console.log(orig);
+						done();
+						//done();
+						
+					})
+			})
+		})
+		/*.end((res)=>{
+			//console.log("The en now",res);
 			//console.log(res.status);
+			console.log("Got response");
 
 			//expect(res.status).toEqual(300);
 			//console.log(res.body);
@@ -116,8 +140,11 @@ xdescribe('POST /api/cities', function() {
 					console.log("Attempting to find user model from Test");
 				 
 					User.findOne({id:user.id},function(err,userModel){
-						console.log("Found"); 
-						expect(userModel.cities.find((c)=>{c.name === "The Red Keep"}));
+						console.log("Found",userModel.cities); 
+						var orig = userModel.cities.find((c)=>{c.name === "The Red Keep"});
+						expect(orig).toEqual(testNewCity);
+						expect(orig).not.toBeUndefined();
+						console.log(orig);
 						done();
 						//done();
 						
@@ -127,8 +154,7 @@ xdescribe('POST /api/cities', function() {
 				
 			})
 		//	done();
-		})
-		.end((a)=>{})
+		})*/
 	})	
 });
 

@@ -2,7 +2,7 @@
 
 let isInteger = v=>v.match(/^[0-9]*$/);
 let getUserByAuthToken = require('./../auth/getUserByAuthToken.js');
-let User = require('./../db/models/User.js');
+
 
 module.exports = function(app){
 
@@ -30,14 +30,16 @@ module.exports = function(app){
 	.post((req,res)=>{
 		console.log("Receive request");
 		let city = req.body;
-	//	console.log("City?",city);
+		let User = require('./../db/models/User.js')();
 		getUserByAuthToken(req.headers.authorization,(user)=>{
-	//		console.log("Got auth. Finding user.", User, user);
-		
+			console.log("finding...")
 			User.findOne({id:user.id},function(err,userModel){
 				//console.log("Found user model.",userModel)
+				
 				userModel.cities.push(city);
-				userModel.save(()=>{
+				console.log("city?",err,userModel);
+				userModel.save((err,obj)=>{
+					console.log("Saved user",err,obj);
 					console.log("Sending response");
 					res.status(300).send();	
 				})
