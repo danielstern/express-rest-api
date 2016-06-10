@@ -68,28 +68,6 @@ describe('GET /api/cities', function() {
 	})
 });
 
-fdescribe('GET /api/cities/:id', function() {
-	it('returns the specified city',(done)=>{
-		user = userSeed[0];
-		city = user.cities[0];
-		console.log("City?",city);
-		request(app)
-			.get(`/api/cities/${city.id}`)
-			.expect(2000)
-			//.expect(userSeed[0].cities[0])
-			.end((req,res)=>{
-				console.log("Got res,",res.body);
-				expect(res.body).toEqual(city);
-				done();
-			})
-	})
-	
-	it('returns a 404 for an invalid index',(done)=>{
-			request(app)
-			.get(`/api/cities/${city.id}`)
-			.expect(401,done);
-	})
-});
 
 
 
